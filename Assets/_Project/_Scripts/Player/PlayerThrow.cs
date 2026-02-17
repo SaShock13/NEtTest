@@ -21,11 +21,14 @@ public class PlayerThrow : NetworkBehaviour
     }
 
     [ServerRpc]
-    private void ThrowBallServerRpc(Vector3 position, Vector3 direction)
+    private void ThrowBallServerRpc(Vector3 position, Vector3 direction, ServerRpcParams rpcParams = default)
     {
+        ulong shooterId = rpcParams.Receive.SenderClientId;
+
         // 1) спавним шарик на сервере
         var ball = Instantiate(ballPrefab, position, Quaternion.identity);
         ball.Spawn();
+        ball.GetComponent<Ball>().ShooterId.Value = shooterId;
 
         // 2) даем движение (сервер)
         var rb = ball.GetComponent<Rigidbody>();

@@ -12,7 +12,8 @@ public class PlayerHealth : NetworkBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (!IsServer) return;!!! damage получает только плеер 1Ё!!!
+        if (!IsServer) return;
+        /// damage получает только плеер 1Ё!!!
 
         if (Hp.Value <= 0) return;
 
@@ -22,8 +23,14 @@ public class PlayerHealth : NetworkBehaviour
 
         if (Hp.Value == 0)
         {
-            // Пока просто лог. Потом можно сделать смерть/респавн.
-            Debug.Log($"Player {OwnerClientId} died");
+            Death();
         }
+    }
+
+    private void Death()
+    {
+        // Пока просто лог
+        Debug.Log($"Player {OwnerClientId} died");
+        NetworkObject.Despawn(true);
     }
 }

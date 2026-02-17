@@ -1,32 +1,24 @@
-﻿using Unity.Netcode;
 using UnityEngine;
 
-public class NetworkAnimatorBySpeed : NetworkBehaviour
+public class NetworkAnimatorBySpeed : MonoBehaviour
 {
     [SerializeField] private Animator animator;
+    [SerializeField] private ServerMovementWithAnim movement;
 
-    private Vector3 lastPos;
-    private float smoothedSpeed;
+    private float _smoothedSpeed;
 
-    private void Start()
+    private void Awake()
     {
-        lastPos = transform.position;
+        if (movement == null)
+            movement = GetComponent<ServerMovementWithAnim>();
     }
 
     private void Update()
     {
-        // Скорость считаем на каждом клиенте локально
-        Vector3 delta = transform.position - lastPos;
-        float speed = delta.magnitude / Mathf.Max(Time.deltaTime, 0.0001f);
+        if (animator == null || movement == null) return;
 
-        lastPos = transform.position;
-
-        // Сглаживание, чтобы не дёргалось из-за сетевых шагов
-        smoothedSpeed = Mathf.Lerp(smoothedSpeed, speed, 12f * Time.deltaTime);
-
-        // Нормализуем под твою скорость
-        float normalized = Mathf.InverseLerp(0f, 4f, smoothedSpeed);
-
-        animator.SetFloat("Speed", normalized);
+        float target = movement.IsWalking.Value ? 1f : 0f;
+        _smoothedSpeed = Mathf.Lerp(_smoothedSpeed, target, 10f * Time.deltaTime);
+        animator.SetFloat("Speed", _smoothedSpeed);
     }
 }

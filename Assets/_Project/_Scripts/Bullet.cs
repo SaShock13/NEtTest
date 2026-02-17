@@ -9,6 +9,12 @@ public class Ball : NetworkBehaviour
 
     private Rigidbody rb;
 
+    public NetworkVariable<ulong> ShooterId = new NetworkVariable<ulong>(
+    0,
+    NetworkVariableReadPermission.Everyone,
+    NetworkVariableWritePermission.Server
+);
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -42,7 +48,9 @@ public class Ball : NetworkBehaviour
         if(health != null)   
         {
             Debug.Log($"PlayerHealth found {this}");
-            if (health.OwnerClientId == OwnerClientId) return;
+            // НЕ дамажим того, кто стрелял
+            if (health.OwnerClientId == ShooterId.Value)
+                return;
 
             health.TakeDamage(damage);
 
