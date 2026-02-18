@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 009d1b61bcf412845aa1dd4d7d679937
+guid: f3b885f2b613db64997791a590f53bdb
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -31,11 +31,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Knocked Out
+      name: Falling To Landing
       takeName: mixamo.com
       internalID: -203655887218126122
-      firstFrame: 30
-      lastFrame: 148
+      firstFrame: 10
+      lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -44,9 +44,9 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 1
+      loopBlendOrientation: 0
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
+      loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0

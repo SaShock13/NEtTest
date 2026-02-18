@@ -11,23 +11,12 @@ public class BonusSpawner : NetworkBehaviour
         if (!NetworkManager.Singleton.IsListening)
             return;
 
-        // Если мы сервер (Host тоже сервер) — можно спавнить напрямую
+        // Если сервер — можно спавнить напрямую
         if (IsServer)
         {
             SpawnBallServer();
         }
-        else
-        {
-            SpawnBallServerRpc();
-        }
     }
-
-    [ServerRpc(RequireOwnership = false)]
-    private void SpawnBallServerRpc()
-    {
-        SpawnBallServer();
-    }
-
 
     private void SpawnBallServer()
     {

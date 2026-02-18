@@ -229,6 +229,7 @@ GameObject:
   - component: {fileID: 7433787435003105009}
   - component: {fileID: 1868707552487256403}
   - component: {fileID: 9201392536945124938}
+  - component: {fileID: 5380092897987007475}
   m_Layer: 0
   m_Name: PLAYER 2
   m_TagString: Untagged
@@ -266,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 56106400
+  GlobalObjectIdHash: 440106560
   InScenePlacedSourceGlobalObjectIdHash: 3635220736
   DeferredDespawnTick: 0
   Ownership: 1
@@ -293,8 +294,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   ShowTopMostFoldoutHeaderGroup: 1
   moveSpeed: 5
-  rotateSpeed: 2
+  rotateSpeed: 8
   inputSendRate: 0.05
+  gravity: -20
+  groundedStickForce: -2
   animator: {fileID: 7096629004491927022}
 --- !u!114 &1047561646676550791
 MonoBehaviour:
@@ -450,7 +453,6 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   nameText: {fileID: 8811243315778299442}
   ownerColor: {r: 0.0032039948, g: 0.023155116, b: 0.6792453, a: 1}
-  renderer: {fileID: 0}
   PlayerNameVar:
     m_InternalValue:
       utf8LengthInBytes: 0
@@ -486,6 +488,24 @@ MonoBehaviour:
         byte0027: 0
         byte0028: 0
         byte0029: 0
+--- !u!114 &5380092897987007475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8065782859646112605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4933d0addfcafad4cbd8d19335a0a80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  ShowTopMostFoldoutHeaderGroup: 1
+  animator: {fileID: 7096629004491927022}
+  controller: {fileID: 3201368996638120882}
+  movement: {fileID: 8502661690456212380}
+  Hp:
+    m_InternalValue: 100
 --- !u!1 &9009428063423786840
 GameObject:
   m_ObjectHideFlags: 0

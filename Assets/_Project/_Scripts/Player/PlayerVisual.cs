@@ -9,7 +9,6 @@ public class PlayerVisual : NetworkBehaviour
 
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private Color ownerColor;
-    [SerializeField] private Renderer renderer;
 
     public NetworkVariable<FixedString32Bytes> PlayerNameVar =
         new NetworkVariable<FixedString32Bytes>(
@@ -32,13 +31,12 @@ public class PlayerVisual : NetworkBehaviour
         // подписка на изменения
         PlayerNameVar.OnValueChanged += OnNameChanged;
 
-        // если это мой игрок — попросим сервер установить имя
+        // если это мой игрок — сервер установит имя
         if (IsOwner)
         {
             string myName = $"Player {OwnerClientId}";
             SetNameServerRpc(myName);
             nameText.color = ownerColor;
-            //if (renderer != null ) renderer.material.color = ownerColor;
         }
 
     }
